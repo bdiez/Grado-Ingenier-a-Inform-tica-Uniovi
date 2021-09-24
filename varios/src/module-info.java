@@ -1,0 +1,3 @@
+module varios {
+	requires junit;
+}
