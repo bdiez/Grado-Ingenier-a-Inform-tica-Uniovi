@@ -1,0 +1,6 @@
+User id	Error id	Message	Type	Line Number	Creation Time	Path	IP
+uo227982	536871008	The serializable class Ventana does not declare a static final serialVersionUID field of type long	WARNING	7	2013-09-20-03:32:00	C:/Users/uo227982/Desktop/practicas cpm/practica1/src/igu/Ventana.java	C:/Users/uo227982/Desktop/practicas cpm/practica1	192.168.63.228
+uo227982	570425421	The value of the field Ventana.btAceptar is not used	WARNING	13	2013-09-20-03:51:24	C:/Users/uo227982/Desktop/practicas cpm/practica1/src/igu/Ventana.java	C:/Users/uo227982/Desktop/practicas cpm/practica1	192.168.63.228
+uo227982	570425421	The value of the field Ventana.btAceptar is not used	WARNING	15	2013-09-20-03:53:56	C:/Users/uo227982/Desktop/practicas cpm/practica1/src/igu/Ventana.java	C:/Users/uo227982/Desktop/practicas cpm/practica1	192.168.63.228
+uo227982	1610612976	Syntax error, insert ";" to complete Statement	ERROR	36	2013-09-20-03:59:18	C:/Users/uo227982/Desktop/practicas cpm/practica1/src/igu/Ventana.java	C:/Users/uo227982/Desktop/practicas cpm/practica1	192.168.63.228
+uo227982	1610612976	Syntax error, insert ";" to complete Statement	ERROR	36	2013-09-20-03:59:27	C:/Users/uo227982/Desktop/practicas cpm/practica1/src/igu/Ventana.java	C:/Users/uo227982/Desktop/practicas cpm/practica1	192.168.63.228
