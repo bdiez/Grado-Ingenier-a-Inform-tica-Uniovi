@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+
+	<!-- Averia quieries -->
+	<named-query name="Averia.findByIds">
+		<query>select a from Averia a where a.id in (?1)</query>
+	</named-query>
+
+	<named-query name="Averia.findNoFacturadasByDni">
+		<query>
+			select a
+			from Averia a
+			where a.vehiculo.cliente.dni = ?1
+			and
+			a.status = uo.ri.amp.model.types.AveriaStatus.TERMINADA
+		</query>
+	</named-query>
+
+	<named-query name="Averia.contarIntervencionesEnPeriodo">
+		<query>select count(a) from Averia a where a.mecanico = ?1 and fecha
+			between ?2 and ?3
+		</query>
+	</named-query>
+
+	<!-- MedioPago queries -->
+	<named-query name="MedioPago.findByInvoiceId">
+		<query>
+			select m
+			from Factura f join f.averias a join a.vehiculo.cliente
+			c join
+			c.mediosPago m
+			where f.id = ?1
+		</query>
+	</named-query>
+
+	<!-- Factura queries -->
+	<named-query name="Factura.findByNumber">
+		<query>select f from Factura f where f.numero = ?1</query>
+	</named-query>
+
+	<named-query name="Factura.getNextInvoiceNumber">
+		<query>select max(f.numero) + 1 from Factura f</query>
+	</named-query>
+
+	<!-- Mecanico queries -->
+	<named-query name="Mecanico.findAll">
+		<query>select m from Mecanico m</query>
+	</named-query>
+
+	<named-query name="Mecanico.findById">
+		<query>select m from Mecanico m where m.id=?1</query>
+	</named-query>
+
+	<named-query name="Mecanico.findConContrato">
+		<query>SELECT c.mecanico FROM Contrato c WHERE c.activo = 'ACTIVO'
+		</query>
+	</named-query>
+
+	<!-- Contrato queries -->
+	<named-query name="Contrato.findByID">
+		<query>SELECT c FROM Contrato c WHERE c.id = ?1</query>
+	</named-query>
+
+	<named-query name="Contrato.findContratoActivo">
+		<query> select c from Contrato c where c.mecanico.id = ?1 and c.activo
+			= 'ACTIVO'
+		</query>
+	</named-query>
+
+	<named-query name="Contrato.contarContratosActivos">
+		<query> select count(c) from Contrato c where c.mecanico.id = ?1 and
+			c.activo = 'ACTIVO'
+		</query>
+	</named-query>
+
+	<named-query name="Contrato.findContratosMecanico">
+		<query> select c from Contrato c where c.mecanico.id = ?1</query>
+	</named-query>
+
+	<named-query name="Contrato.findContratosActivos">
+		<query>select c from Contrato c where c.tipoContrato.id = ?1 and
+			c.activo = 'ACTIVO'
+		</query>
+	</named-query>
+	<named-query name="Contrato.findAll">
+        <query>select c from Contrato c</query>
+    </named-query>
+	
+
+	<!-- Nomina queries -->
+	<named-query name="Nomina.contarNominas">
+		<query>
+			SELECT COUNT(n) FROM Nomina n WHERE MONTH(n.fecha) = ?1 AND
+			YEAR(n.fecha) = ?2 AND n.contrato.mecanico = ?3
+		</query>
+	</named-query>
+
+	<named-query name="Nomina.findUltimaNominaMecanico">
+		<query>
+			select n from Nomina n where n.contrato.mecanico = ?1 order by
+			n.fecha desc
+		</query>
+	</named-query>
+
+	<named-query name="Nomina.contarNominasMecanico">
+		<query>
+			select count(n) from Nomina n where n.contrato.mecanico = ?1
+		</query>
+	</named-query>
+
+	<named-query name="Nomina.listadoGeneralNominasMecanico">
+		<query>select n from Nomina n where n.contrato.mecanico.id = ?1
+		</query>
+	</named-query>
+
+	<!-- <named-query name="findItemsOnSaleByCategoryId"> <query> <![CDATA[ 
+		select i from Item i join i.categories c where c.id = ?2 and i.startDate 
+		<= ?1 and i.endDate >= ?1 ]]> </query> </named-query> -->
+
+</entity-mappings>
